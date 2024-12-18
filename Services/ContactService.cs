@@ -23,7 +23,7 @@ namespace ContactsManager.Services
                 var contacts = await _context.Contacts.ToListAsync();
 
                 response.Data = contacts;
-                response.Message = "Contatos listados com sucesso!";
+                response.Message = "Contacts listed!";
                 return response;
             }
             catch(Exception ex)
@@ -45,14 +45,14 @@ namespace ContactsManager.Services
                     Name = cont.Name,
                     Email = cont.Email,
                     Phone = cont.Phone,
-                    ImagePath = cont.ImagePath
+                    Img = cont.Img
                 };
 
                 _context.Add(contact);
                 await _context.SaveChangesAsync();
 
                 response.Data = await _context.Contacts.ToListAsync();
-                response.Message = "Contato adicionado com sucesso";
+                response.Message = "Contact created successfully";
                 return response;
 
             }
@@ -75,20 +75,20 @@ namespace ContactsManager.Services
                 if (contact == null)
                 {
                     response.Data = await _context.Contacts.ToListAsync();
-                    response.Message = "Contato não encontrado";
+                    response.Message = "Contact not found";
                     return response;
                 }
 
                 contact.Name = cont.Name;
                 contact.Email = cont.Email;
                 contact.Phone = cont.Phone;
-                contact.ImagePath = cont.ImagePath;
+                contact.Img = cont.Img;
 
                 _context.Update(contact);
                 await _context.SaveChangesAsync();
 
                 response.Data = await _context.Contacts.ToListAsync();
-                response.Message = "Contato editado com sucesso";
+                response.Message = "Contact edited successfully";
                 return response;
 
             }
@@ -111,7 +111,7 @@ namespace ContactsManager.Services
                 if(contact == null)
                 {
                     response.Data = await _context.Contacts.ToListAsync();
-                    response.Message = "Contato não encontrado";
+                    response.Message = "Contact not found";
                     return response;
                 }
 
@@ -119,7 +119,7 @@ namespace ContactsManager.Services
                 await _context.SaveChangesAsync();
 
                 response.Data= await _context.Contacts.ToListAsync();
-                response.Message = "Contato excluido com sucesso";
+                response.Message = "Contact deleted successfully";
                 return response;
             }
             catch(Exception ex)

@@ -1,12 +1,12 @@
 ﻿using ContactsManager.Models;
 using ContactsManager.Models.DTOs;
 using ContactsManager.Services;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ContactsManager.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/contact")]
     [ApiController]
     public class ContactController : ControllerBase
     {
@@ -17,28 +17,32 @@ namespace ContactsManager.Controllers
             _contactInterface = contactInterface;
         }
 
-        [HttpGet("listar-contatos")]
+        [Authorize]
+        [HttpGet("list")]
         public async Task<ActionResult<List<ContactModel>>> GetContacts()
         {
             var contacts = await _contactInterface.GetContacts();
             return Ok(contacts);
         }
 
-        [HttpPost("criar-contato")]
+        [Authorize]
+        [HttpPost("create")]
         public async Task<ActionResult<List<ContactModel>>> CreateContact(CreateContactDTO cont)
         {
             var contacts = await _contactInterface.CreateContact(cont);
             return Ok(contacts);
         }
 
-        [HttpPut("editar-contato/{cont.id}")]
+        [Authorize]
+        [HttpPut("edit")]
         public async Task<ActionResult<List<ContactModel>>> UpdateContact(UpdateContactDTO cont)
         {
             var contacts = await _contactInterface.UpdateContact(cont);
             return Ok(contacts);
         }
 
-        [HttpDelete("deletar-contato/{id}")]
+        [Authorize]
+        [HttpDelete("delete/{id}")]
         public async Task<ActionResult<List<ContactModel>>> DeleteContact(int id)
         {
             var contacts = await _contactInterface.DeleteContact(id);
