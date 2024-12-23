@@ -43,9 +43,7 @@ namespace ContactsManager.Services
                 var contact = new ContactModel()
                 {
                     Name = cont.Name,
-                    Email = cont.Email,
                     Phone = cont.Phone,
-                    Img = cont.Img
                 };
 
                 _context.Add(contact);
@@ -80,9 +78,7 @@ namespace ContactsManager.Services
                 }
 
                 contact.Name = cont.Name;
-                contact.Email = cont.Email;
                 contact.Phone = cont.Phone;
-                contact.Img = cont.Img;
 
                 _context.Update(contact);
                 await _context.SaveChangesAsync();

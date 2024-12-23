@@ -31,10 +31,10 @@ namespace ContactsManager.Services
             try
             {
                 var usr = await _context.Users.FirstOrDefaultAsync(x => x.Email == login.Email);
-                if (usr == null) return "Usuário não encontrado";
+                if (usr == null) return "User not found";
 
                 bool verify = BCrypt.Net.BCrypt.Verify(login.Password, usr.Password);
-                if (!verify) return "Senha incorreta";
+                if (!verify) return "Invalid password";
 
                 var jwtSettings = _configuration.GetSection("Jwt");
                 var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings["Key"]));
