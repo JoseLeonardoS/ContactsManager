@@ -45,7 +45,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy(name: "MyPolicy",
         policy =>
         {
-            policy.AllowAnyOrigin()
+            policy.WithOrigins("https://joseleonardos.github.io/ContactsManagerFrontEnd/")
                   .AllowAnyHeader()
                   .AllowAnyMethod();
         });

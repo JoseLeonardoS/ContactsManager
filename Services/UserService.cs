@@ -63,6 +63,13 @@ namespace ContactsManager.Services
         {
             try
             {
+                var checkUser = await _context.Users.FirstOrDefaultAsync(x=> x.Email == user.Email);
+
+                if (checkUser != null)
+                {
+                    return "Email already registered";
+                }
+
                 var usr = new UserModel
                 {
                     Name = user.Name,
@@ -74,7 +81,7 @@ namespace ContactsManager.Services
                 _context.Users.Add(usr);
                 await _context.SaveChangesAsync();
 
-                return "Usuário criado com sucesso";
+                return "User created successfully";
             }
             catch(Exception ex)
             {
