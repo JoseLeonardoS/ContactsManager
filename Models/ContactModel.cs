@@ -12,7 +12,7 @@ namespace ContactsManager.Models
         public string? Name { get; set; }
 
         [Required(ErrorMessage = "The Phone field is required.")]
-        [RegularExpression(@"^(\+55)?\s?(\(?\d{2}\)?)\s?\d{4,5}-?\d{4}$", ErrorMessage = "Invalid Phone number format.")]
+        [RegularExpression(@"^\+?(\d{1,4})?[\s.-]?\(?\d{1,4}\)?[\s.-]?\d{1,4}[\s.-]?\d{1,4}[\s.-]?\d{0,4}$", ErrorMessage = "Invalid Phone number format.")]
         public string? Phone { get; set; }
     }
 }
